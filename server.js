@@ -21,7 +21,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static directory
-app.use(express.static("public/my-app/src"));
+app.use(express.static("public/my-app"));
+
+app.get('/*', function(req,res) {
+res.sendFile(path.join(__dirname,'/public/my-app/src/index.html'));
+});
 
 //Require models
 var db = require('./models/');
